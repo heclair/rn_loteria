@@ -13,7 +13,9 @@ const styles = StyleSheet.create({
       marginBottom: 20,
     },
     numbersContainer: {
-      flexDirection: 'row',
+      flexDirection: 'row',            // Para que os números sejam organizados em linha
+      flexWrap: 'wrap',               // Permite que os números que não cabem na linha atual se movam para a próxima
+      justifyContent: 'center',       // Centraliza os círculos na tela
       marginBottom: 20,
     },
     date: {
