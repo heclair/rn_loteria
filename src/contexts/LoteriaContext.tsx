@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react';
-import { LoteriaContextProps, ResultadoLoteria } from '../types';
+import { LoteriaContextProps, ResultadoLoteriaSimplificado } from '../types';
 import LoteriaService from '../services/LoteriaService';
 
 // Criando o contexto
@@ -8,9 +8,9 @@ export const LoteriaContext = createContext<LoteriaContextProps | undefined>(und
 // Provider do contexto
 export const LoteriaProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const [resultados, setResultados] = useState<{
-        megasena?: ResultadoLoteria;
-        timemania?: ResultadoLoteria;
-        quina?: ResultadoLoteria;
+        megasena?: ResultadoLoteriaSimplificado;
+        timemania?: ResultadoLoteriaSimplificado;
+        quina?: ResultadoLoteriaSimplificado;
     }>({});
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);

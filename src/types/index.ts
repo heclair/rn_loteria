@@ -21,10 +21,15 @@ export interface LoteriasResult {
 
 export interface LoteriaContextProps {
     resultados: {
-        megasena?: ResultadoLoteria;
-        timemania?: ResultadoLoteria;
-        quina?: ResultadoLoteria;
+        megasena?: ResultadoLoteriaSimplificado;
+        timemania?: ResultadoLoteriaSimplificado;
+        quina?: ResultadoLoteriaSimplificado;
     };
     loading: boolean;
     error: string | null;
+}
+
+export interface ResultadoLoteriaSimplificado {
+    dezenas: string[];
+    dataPorExtenso: string;
 }

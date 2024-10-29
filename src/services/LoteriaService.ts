@@ -1,20 +1,26 @@
 import axios from 'axios';
-import { LoteriasResult, ResultadoLoteria } from '../types';
+import { LoteriasResult, ResultadoLoteria, ResultadoLoteriaSimplificado } from '../types';
 
 
 
 class LoteriaService {
     private static apiUrl = 'https://servicebus2.caixa.gov.br/portaldeloterias/api/home/ultimos-resultados';
 
-    public static async obterResultadosLoteria(tipo: 'megasena' | 'timemania' | 'quina'): Promise<ResultadoLoteria> {
+    public static async obterResultadosLoteria(tipo: 'megasena' | 'timemania' | 'quina'): Promise<ResultadoLoteriaSimplificado> {
         try {
             const response = await axios.get<LoteriasResult>(this.apiUrl);
-            return response.data[tipo]; // Retorna o resultado da loteria desejada
+            const resultado = response.data[tipo];
+    
+            return {
+                dezenas: resultado.dezenas,
+                dataPorExtenso: resultado.dataPorExtenso,
+            };
         } catch (error) {
             console.error(`Erro ao buscar resultados da ${tipo}:`, error);
-            throw error; // Repassa o erro para tratamento posterior
+            throw error;
         }
     }
+    
 }
 
 (async () => {
