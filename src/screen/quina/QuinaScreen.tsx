@@ -2,20 +2,20 @@
 import React from 'react';
 import { View, Text, StyleSheet, ActivityIndicator } from 'react-native';
 
-import styles from './styles';
 import NumberCircle from '../../components/circule/NumberCircule';
 import { useLoteria } from '../../hooks';
+import { theme, styles } from '../../theme';
 
 const QuinaScreen: React.FC = () => {
   
   const { resultados, loading, error } = useLoteria();
 
   if (loading) {
-    return <ActivityIndicator size="large" color="#209869" />;
+    return <ActivityIndicator size="large" color={theme.colors.quina.background} />;
   }
 
   if (error) {
-    return <Text style={styles.errorText}>{error}</Text>;
+    return <Text style={{fontSize: theme.fontSizes.text}}>{error}</Text>;
   }
 
   const numerosQuina = resultados.quina?.dezenas || [];
@@ -26,12 +26,12 @@ const QuinaScreen: React.FC = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>QUINA</Text>
-      <View style={styles.numbersContainer}>
+      <View style={styles.circleContainer}>
         {numerosQuina.map((num, index) => (
-          <NumberCircle key={index} number={num} backgroundColor="#260085" textColor="#fff" />
+          <NumberCircle key={index} number={num} backgroundColor={theme.colors.quina.background} text={theme.colors.quina.text} spacing={theme.spacing.medium} />
         ))}
       </View>
-      <Text style={styles.date}>{resultados.quina?.dataPorExtenso || 'Data não disponível'}</Text>
+      <Text style={styles.subText}>{resultados.quina?.dataPorExtenso || 'Data não disponível'}</Text>
     </View>
   );
 };

@@ -8,6 +8,8 @@ import QuinaScreen from "./src/screen/quina/QuinaScreen";
 import TimemaniaScreen from "./src/screen/timemania/TimemaniaScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
+import DrawerNavigator from "./src/routes/routes";
+import { theme } from "./src/theme";
 
 const Drawer = createDrawerNavigator();
 
@@ -16,11 +18,8 @@ const App: React.FC = () => {
   return (
     <LoteriaProvider>
       <NavigationContainer>
-        <Drawer.Navigator initialRouteName="MegaSena">
-          <Drawer.Screen name="Mega-sena" component={MegaSenaScreen} />
-          <Drawer.Screen name="Quina" component={QuinaScreen} />
-          <Drawer.Screen name="Timemania" component={TimemaniaScreen} />
-        </Drawer.Navigator>
+      <StatusBar style="dark" backgroundColor={theme.colors.background} />
+        <DrawerNavigator />
       </NavigationContainer>
     </LoteriaProvider>
   );

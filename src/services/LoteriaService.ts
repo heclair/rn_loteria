@@ -35,6 +35,7 @@ class LoteriaService {
         console.log('Resultados da Quina:', resultadoQuina);
     } catch (error) {
         console.error('Erro ao obter resultados:', error);
+        
     }
 })();
 
